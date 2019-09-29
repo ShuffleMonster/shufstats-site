@@ -1,5 +1,5 @@
 # 🃏 https://Stats.Shuffle.Monster 🃏 
-shufstats-v2 of the website that uses webpack.
+shufstats-v2 now uses Vue.
 ----------------------------------------
 
 
