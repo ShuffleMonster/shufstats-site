@@ -1,5 +1,5 @@
 # shufstats-v2
-ðŸƒ https://Stats.Shuffle.Monster ðŸƒ V2 of the website that uses webpack.
+🃏 https://Stats.Shuffle.Monster 🃏 V2 of the website that uses webpack.
 ----------------------------------------
 
 
