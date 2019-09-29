@@ -5,8 +5,8 @@ shufstats-v2 now uses Vue.
 
 # Installation
 
-install latest version of node
-go into dir and run `npm install`
+install latest version of node,
+& go into dir and run `npm install`
 
 
 ## Development server
