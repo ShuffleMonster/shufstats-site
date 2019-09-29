@@ -3,7 +3,7 @@
 ----------------------------------------
 
 
-#Installation
+# Installation
 
 install latest version of node
 go into dir and run `npm install`
