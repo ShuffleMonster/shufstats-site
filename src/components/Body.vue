@@ -171,6 +171,7 @@
             <div class="w3-col w3-margin-bottom">
         <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
           <h4>Track your Shuffle Monster Tokens</h4>
+          TEST
           <p align="center">
             <font size="2px" Style="font-weight: 50;">paste your wallet addresses below</font>
             <font size="2" style="color: #a8a8a8a4; font-weight: 50;"> <br><i>input one address per line</i></font>
