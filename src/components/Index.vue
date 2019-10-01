@@ -1,103 +1,41 @@
 <template>
 
+<body>
   <div class="wrapper">
-    <div class="row w3-hoverable">
-      <div class="left table-all w3-round w3-card-4 w3-striped">
-
-        <table align="center">
-
-          <tr>
-            <h4>Contract Details</h4>
+        <div class="w3-row-padding">
+            <div class="w3-row w3-margin-bottom">
+        <div class="w3-badge">
             
-            <td align="left">
-              <font size="2">
-                
-                  <font style="color: #ffd000;">Version:</font>
-                  <span id="apiVersion">loading...</span>
-
-                <!-- <div v-for="item in winners" v-bind:key="item.tx" class="winner">
-                    <button v-on:click="click_winner(item)" class="btn btn-outline-warning winner-button">
-                        <b>{{ item.address_short }}</b>
-                        <br/>
-                        wins <b>{{ item.amount }}</b> SHUF
-                    </button>
-                </div> -->
-                
-                <p>
-                  <font style="color: #ffd000;">Name:</font>
-                  <span id="name">loading...</span>
-                </p>
-                <p>
-                  <font style="color: #ffd000;">Symbol:</font>
-                  <span id="symbol">loading...</span>
-                </p>
-                <p>
-                  <font style="color: #ffd000;">Contract Address:</font>
-                  <span id="contractAddress">loading...</span>
-                </p>
-                <p>
-                  <font style="color: #ffd000;">Decimals:</font>
-                  <span id="decimals">loading...</span> (18)
-                </p>
-                <p>
-                  <font style="color: #ffd000;">Current Ethereum Block #:</font>
-                  <span id="currentEthBlock">loading...</span>
-                </p>
-              </font>
-            </td>
-        </tr>
-        </table>
-      </div>
-
-      <div class="right w3-round w3-card-4">
-        <table align="center">
-          <tr>
-            <h4>Token Stats</h4>
+          <h5>Shuffle Monster Winnings!</h5>
+           <table class="w3-table-all w3-round w3-hoverable w3-green w3-card-4">
+            <tbody class="w3-hoverable">
+              
             
-            <td align="left">
-              <font size="2">
+                <tr v-on:click="click_winner(item)" v-for="item in winners" v-bind:key="item.tx">
+                    <td><i class="fab fa-ethereum w3-text-dark-grey w3-xxlarge"></i></td>
+      <td>{{ item.address_short }}</td>
+       <td>wins {{ item.amount }} SHUF</td>
+       </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+</div>
+</div>
+</body>
 
-                <p>
-                  <font style="color: #ffd000;">Initial Supply:</font>
-                  <span id="initialSupply">loading...</span>
-                </p>
-                <p>
-                  <font style="color: #ffd000;">Current Circulating Supply:</font>
-                  <span id="circulatingSupplyReadable">loading...</span>
-                </p>
-                <p>
-                  <font style="color: #ffd000;">Token Burned:</font>
-                  <span id="tokensBurned">loading...</span>
-                </p>
-                <p>
-                  <font style="color: #ffd000;">Current Heap Size:</font>
-                  <span id="heapSize">loading...</span> / 512
-                </p>
-                <p>
-                  <font style="color: #ffd000;">Last address on the Heap:</font>
-                  <span id="lastHeapAddress">loading...</span>
-
-                </p>
-                <p>
-                  <font style="color: #ffd000;">Amount of tokens the last spot holds:</font> <span
-                    id="lastHeapAmountReadable">loading...</span>
-                </p>
-              </font>
-            </td>
-          </tr>
-        </table>
-
-      </div>
-    </div>
-  </div>
 </template>
 
+
 <script>
+
+
+
 
 import { readWeb3, getToken } from '../web3.js';
 
 function shortAddress(addr) {
-    return `${addr.slice(0, 5)}...${addr.slice(-5)}`;
+    return `${addr.slice(0, 21)}...${addr.slice(-5)}`;
 }
 
 function formatAmount(amount, maxDigits = 6)  {
@@ -113,6 +51,29 @@ function formatAmount(amount, maxDigits = 6)  {
     return Number(amount.toFixed(decimals)).toString();
 }
 
+
+
+// function shortAddress2(from) {
+//     return `${from.slice(0, 21)}...${from.slice(-5)}`;
+// }
+
+// function formatAmount2(amount2, maxDigits = 6)  {
+//     if (amount2.toString().length <= maxDigits) {
+//         return amount2.toString();
+//     }
+
+//     const intDigits = amount2.toFixed(0).toString().length;
+//     const decDigits = maxDigits - intDigits;
+
+//     const decimals = (decDigits > 0) ? decDigits : 0;
+
+//     return Number(amount2.toFixed(decimals)).toString();
+// }
+
+
+
+
+
 export default {
   name: 'Index',
   data: function() {
@@ -120,19 +81,35 @@ export default {
         winners: this.winners
     }
   },
+
+// data: function() {
+//     return {
+//         transfers: this.transfers
+//     }
+//   },
+
   methods:{
       click_winner: function(item) {
         var redirectWindow = window.open(`https://etherscan.io/tx/${item.tx}`, '_blank');
         redirectWindow.location;
       },
   },
+
+  // methods:{
+  //     click_transfer: function(item) {
+  //       var redirectWindow = window.open(`https://etherscan.io/tx/${item.tx2}`, '_blank');
+  //       redirectWindow.location;
+  //     },
+  // },
+
+
   created: async function() {
     this.winners = [];
     const reparter = getToken(readWeb3());
     reparter.events.Winner({
             fromBlock: 8617285
         }, (error, event) => {
-            if (this.winners.length > 5) {
+            if (this.winners.length > 10) {
                 this.winners.pop();
             }
             if (event) {
@@ -146,86 +123,102 @@ export default {
         }
     );
   }
+
+  //   created: async function() {
+  //   this.transfers = [];
+  //   const reparter = getToken(readWeb3());
+  //   reparter.events.Transfer({
+  //           fromBlock: 8617285
+  //       }, (error, event) => {
+  //           if (this.transfers.length > 10) {
+  //               this.transfers.pop();
+  //           }
+  //           if (event) {
+  //               this.transfers.unshift({
+  //                   address2: event.returnValues._from,
+  //                   address22: event.returnValues._to,
+  //                   address_short2: shortAddress(event.returnValues._from),
+  //                   address_short22: shortAddress(event.returnValues._to),
+  //                   amount2: formatAmount(parseFloat(event.returnValues._value.toString()) / 10 ** 18),
+  //                   tx2: event.transactionHash
+  //               });
+  //           }
+  //       }
+  //   );
+  // }
+
+
+
+
+
+
+  
 }
 
-    function fetchJson() {
-      var xhr = new XMLHttpRequest();
-      // set a callback for when the json is loaded
-      xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) { // if json loaded successfully
-          var data = JSON.parse(this.responseText);
-          // do stuff with data
-          document.querySelector("#apiVersion").innerText = data["apiVersion"];
-          document.querySelector("#name").innerText = data["name"];
-          document.querySelector("#symbol").innerText = data["symbol"];
-          document.querySelector("#contractAddress").innerText = data["contractAddress"];
-          document.querySelector("#decimals").innerText = data["decimals"];
-          document.querySelector("#currentEthBlock").innerText = data["currentEthBlock"];
-          document.querySelector("#initialSupply").innerText = data["initialSupply"];
-          document.querySelector("#circulatingSupplyReadable").innerText = data["circulatingSupplyReadable"];
-          document.querySelector("#tokensBurned").innerText = data["tokensBurned"];
-          document.querySelector("#heapSize").innerText = data["heapSize"];
-          document.querySelector("#lastHeapAddress").innerText = data["heapTopAddress"];
-          document.querySelector("#lastHeapAmountReadable").innerText = data["heapTopAmountReadable"];
 
-        }
-      };
-      // fetch the json
-      xhr.open("GET", "https://api2.shuffle.monster", true);
-      xhr.send();
-    }
-    window.onload = function () {
-      fetchJson();
-    };
+
 
 
 </script>
 
+
+
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-.wns {
-    min-height: 430px;
+
+
+/* Hot it works? */
+.container{
+    width: auto;
 }
-.last {
-    min-width: 320px;
+.my-auto{
+    margin-top: auto;
+    margin-bottom: auto;
 }
-.winner {
-    margin: 20px;
-}
-.winner-button {
-    color: #dba80d;
-    border-color: #dba80d;
-    width: 250px;
-}
-.winner-button:hover { 
-    color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.auto{
-    margin: auto;
-}
-.main-text {
-    margin-left: 60px;
-}
-.heap {
-    padding: 0;
-}
-.heap-wrapper {
-    width: 130px;
-    padding: 0;
+.title{
+    position: static;
+    max-width: 731px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 93.19%;
+    text-align: left;
+    /* or 33px */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.02em;
+
+    color: #000000;
 }
 
+.description{
+    position: static;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 25px;
+    text-align: left;
+    /* or 18px */
+    align-items: center;
+    color: #000000;
+}
+
+.main{
+    margin-top: 66px;
+    margin-bottom: 66px;
+}
 
 @media screen and (max-width: 767px) {
-    .hide-mobile {
-        display: none;
-    }
     .margin-mobile {
-        margin: 16px;
-    }
-    .mobile-top-margin {
-        margin-top:44px;
+        /* padding: 25px; */
+        margin-left: 16px;
+        margin-right: 16px;
     }
 }
+
 
 </style>

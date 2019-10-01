@@ -1,0 +1,246 @@
+<template>
+
+
+
+
+
+
+    <!-- <div class="w3-row">
+      <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-half">
+          <h5>Feeds</h5>
+           <table class="w3-table-all w3-round w3-hoverable w3-green w3-card-4">
+            <tbody class="w3-hoverable">
+              
+            
+                <tr v-on:click="click_winner(item)" v-for="item in winners" v-bind:key="item.tx">
+                    <td><i class="fab fa-ethereum w3-text-dark-grey w3-xxlarge"></i></td>
+      <td>{{ item.address_short }}</td>
+       <td>wins {{ item.amount }} SHUF</td>
+       </tr>
+            </tbody>
+          </table>
+        </div> -->
+        <div class="w3-half">
+          <h5>Feeds</h5>
+           <table class="w3-table-all w3-round w3-hoverable w3-green w3-card-4">
+            <tbody class="w3-hoverable">
+              
+            
+                <tr v-on:click="click_transfer(item)" v-for="item in transfers" v-bind:key="item.tx2">
+                   <td><i class="fab fa-ethereum w3-text-dark-grey w3-xxlarge"></i></td>
+      <td>{{ item.address_short22 }}</td>
+       <td>transfers {{ item.amount2 }} SHUF</td>
+       </tr>
+            </tbody>
+          </table>
+        </div>
+      <!-- </div>
+    </div>
+
+
+
+  </div> -->
+
+
+
+</template>
+
+
+      
+
+<script>
+
+
+
+
+// import { readWeb3, getToken } from '../web3.js';
+
+// function shortAddress(addr) {
+//     return `${addr.slice(0, 21)}...${addr.slice(-5)}`;
+// }
+
+// function formatAmount(amount, maxDigits = 6)  {
+//     if (amount.toString().length <= maxDigits) {
+//         return amount.toString();
+//     }
+
+//     const intDigits = amount.toFixed(0).toString().length;
+//     const decDigits = maxDigits - intDigits;
+
+//     const decimals = (decDigits > 0) ? decDigits : 0;
+
+//     return Number(amount.toFixed(decimals)).toString();
+// }
+
+
+
+function shortAddress2(from) {
+    return `${from.slice(0, 21)}...${from.slice(-5)}`;
+}
+
+function formatAmount2(amount2, maxDigits = 6)  {
+    if (amount2.toString().length <= maxDigits) {
+        return amount2.toString();
+    }
+
+    const intDigits = amount2.toFixed(0).toString().length;
+    const decDigits = maxDigits - intDigits;
+
+    const decimals = (decDigits > 0) ? decDigits : 0;
+
+    return Number(amount2.toFixed(decimals)).toString();
+}
+
+
+
+
+
+export default {
+  name: 'Index2',
+  // data: function() {
+  //   return {
+  //       winners: this.winners
+  //   }
+  // },
+
+data: function() {
+    return {
+        transfers: this.transfers
+    }
+  },
+
+  // methods:{
+  //     click_winner: function(item) {
+  //       var redirectWindow = window.open(`https://etherscan.io/tx/${item.tx}`, '_blank');
+  //       redirectWindow.location;
+  //     },
+  // },
+
+  methods:{
+      click_transfer: function(item) {
+        var redirectWindow = window.open(`https://etherscan.io/tx/${item.tx2}`, '_blank');
+        redirectWindow.location;
+      },
+  },
+
+
+  // created: async function() {
+  //   this.winners = [];
+  //   const reparter = getToken(readWeb3());
+  //   reparter.events.Winner({
+  //           fromBlock: 8617285
+  //       }, (error, event) => {
+  //           if (this.winners.length > 10) {
+  //               this.winners.pop();
+  //           }
+  //           if (event) {
+  //               this.winners.unshift({
+  //                   address: event.returnValues._addr,
+  //                   address_short: shortAddress(event.returnValues._addr),
+  //                   amount: formatAmount(parseFloat(event.returnValues._value.toString()) / 10 ** 18),
+  //                   tx: event.transactionHash
+  //               });
+  //           }
+  //       }
+  //   );
+  // },
+
+    created: async function() {
+    this.transfers = [];
+    const reparter = getToken(readWeb3());
+    reparter.events.Transfer({
+            fromBlock: 8617285
+        }, (error, event) => {
+            if (this.transfers.length > 10) {
+                this.transfers.pop();
+            }
+            if (event) {
+                this.transfers.unshift({
+                    address2: event.returnValues._from,
+                    address22: event.returnValues._to,
+                    address_short2: shortAddress(event.returnValues._from),
+                    address_short22: shortAddress(event.returnValues._to),
+                    amount2: formatAmount(parseFloat(event.returnValues._value.toString()) / 10 ** 18),
+                    tx2: event.transactionHash
+                });
+            }
+        }
+    );
+  }
+
+
+
+
+
+
+  
+}
+
+
+
+
+
+</script>
+
+
+
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+
+
+/* Hot it works? */
+.container{
+    width: auto;
+}
+.my-auto{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.title{
+    position: static;
+    max-width: 731px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 93.19%;
+    text-align: left;
+    /* or 33px */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.02em;
+
+    color: #000000;
+}
+
+.description{
+    position: static;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 25px;
+    text-align: left;
+    /* or 18px */
+    align-items: center;
+    color: #000000;
+}
+
+.main{
+    margin-top: 66px;
+    margin-bottom: 66px;
+}
+
+@media screen and (max-width: 767px) {
+    .margin-mobile {
+        /* padding: 25px; */
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+}
+
+
+</style>

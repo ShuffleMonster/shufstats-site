@@ -249,7 +249,7 @@
 
 
 
-    <div class="w3-row">
+    <!-- <div class="w3-row">
       <div class="w3-row-padding" style="margin:0 -16px">
         <div class="w3-half">
           <h5>Feeds</h5>
@@ -264,27 +264,23 @@
        </tr>
             </tbody>
           </table>
-        </div>
-        <div class="w3-half">
+        </div> -->
+        <!-- <div class="w3-half">
           <h5>Feeds</h5>
            <table class="w3-table-all w3-round w3-hoverable w3-green w3-card-4">
             <tbody class="w3-hoverable">
               
             
-                <tr v-on:click="click_winner(item)" v-for="item in winners" v-bind:key="item.tx">
+                <tr v-on:click="click_transfer(item)" v-for="item in transfers" v-bind:key="item.tx2">
                    <td><i class="fab fa-ethereum w3-text-dark-grey w3-xxlarge"></i></td>
-      <td>{{ item.address_short }}</td>
-       <td>wins {{ item.amount }} SHUF</td>
+      <td>{{ item.address_short22 }}</td>
+       <td>transfers {{ item.amount2 }} SHUF</td>
        </tr>
             </tbody>
           </table>
-        </div>
+        </div> -->
       </div>
-    </div>
 
-
-
-  </div>
 
 
 
@@ -297,68 +293,608 @@
 
 </body>
 
+
+
 </template>
 
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
 
-
+      
 
 <script>
 
+    let addresses = [];
 
+    function myFunction() {
+        addresses = document.getElementById("myTextarea").value.split(/\r?\n/);
+        $('#mySpots')[0].innerHTML = ''
+        $('#myBalances')[0].innerHTML = ''
 
+        addresses.map(address => {
+            console.log('address - looping!', address)
+            getHeapIndex(address).then(function (result) {
+                console.log(address);
+                let h =
+                    `<font size="2px" Style="font-weight: 100;"><a style="color: #ffffff" href="https://etherscan.io/address/${address}" target="_blank">${address}</a></br>^  <font size="3" style="color: #ff3c00f8; font-weight: 600;">is # ${result} in the Heap</font> </br></br>`;
+                console.log(h);
+                $('#mySpots').append(h);
+            });
 
-import { readWeb3, getToken } from '../web3.js';
-
-function shortAddress(addr) {
-    return `${addr.slice(0, 21)}...${addr.slice(-5)}`;
-}
-
-function formatAmount(amount, maxDigits = 6)  {
-    if (amount.toString().length <= maxDigits) {
-        return amount.toString();
+            getBalance(address).then(function (result) {
+                let h =
+                    `<font size="2px" Style="font-weight: 100;"><a style="color: #ffffff" href="https://etherscan.io/address/${address}" target="_blank">${address}</a></br>^ Has</font> <font size="3" style="color: #ff3c00f8; font-weight: 600;">${web3.utils.fromWei(result, 'ether')} SHUF</font>  </br></br>`;
+                console.log('@@@', h);
+                $('#myBalances').append(h);
+            });
+        })
     }
 
-    const intDigits = amount.toFixed(0).toString().length;
-    const decDigits = maxDigits - intDigits;
+    var shuffleABI = [{
+        "constant": true,
+        "inputs": [],
+        "name": "name",
+        "outputs": [{
+            "name": "",
+            "type": "string"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_to",
+            "type": "address"
+        }, {
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "transferWithFee",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "_i",
+            "type": "uint256"
+        }],
+        "name": "heapEntry",
+        "outputs": [{
+            "name": "",
+            "type": "address"
+        }, {
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_spender",
+            "type": "address"
+        }, {
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "approve",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_owner",
+            "type": "address"
+        }],
+        "name": "setOwner",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "",
+            "type": "address"
+        }],
+        "name": "whitelistTo",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_from",
+            "type": "address"
+        }, {
+            "name": "_to",
+            "type": "address"
+        }, {
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "transferFrom",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "decimals",
+        "outputs": [{
+            "name": "",
+            "type": "uint8"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "extraGas",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_to",
+            "type": "address"
+        }, {
+            "name": "_amount",
+            "type": "uint256"
+        }],
+        "name": "init",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "",
+            "type": "address"
+        }],
+        "name": "whitelistFrom",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "heapTop",
+        "outputs": [{
+            "name": "",
+            "type": "address"
+        }, {
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "_addr",
+            "type": "address"
+        }],
+        "name": "balanceOf",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "topSize",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "name": "_cat",
+            "type": "uint256"
+        }],
+        "name": "getNonce",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_from",
+            "type": "address"
+        }, {
+            "name": "_to",
+            "type": "address"
+        }, {
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "transferFromWithFee",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_gas",
+            "type": "uint256"
+        }],
+        "name": "setExtraGas",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "owner",
+        "outputs": [{
+            "name": "",
+            "type": "address"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "symbol",
+        "outputs": [{
+            "name": "",
+            "type": "string"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "heap",
+        "outputs": [{
+            "name": "",
+            "type": "address"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "name": "_whitelisted",
+            "type": "bool"
+        }],
+        "name": "setWhitelistedTo",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_to",
+            "type": "address"
+        }, {
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "transfer",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "_addr",
+            "type": "address"
+        }],
+        "name": "heapIndex",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_heap",
+            "type": "address"
+        }],
+        "name": "setHeap",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_name",
+            "type": "string"
+        }],
+        "name": "setName",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "FEE",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "name": "_spender",
+            "type": "address"
+        }],
+        "name": "allowance",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "heapSize",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "name": "_whitelisted",
+            "type": "bool"
+        }],
+        "name": "setWhitelistedFrom",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": true,
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "Winner",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "name": "_prev",
+            "type": "string"
+        }, {
+            "indexed": false,
+            "name": "_new",
+            "type": "string"
+        }],
+        "name": "SetName",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "name": "_prev",
+            "type": "uint256"
+        }, {
+            "indexed": false,
+            "name": "_new",
+            "type": "uint256"
+        }],
+        "name": "SetExtraGas",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "name": "_prev",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_new",
+            "type": "address"
+        }],
+        "name": "SetHeap",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_whitelisted",
+            "type": "bool"
+        }],
+        "name": "WhitelistFrom",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_whitelisted",
+            "type": "bool"
+        }],
+        "name": "WhitelistTo",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": true,
+            "name": "_from",
+            "type": "address"
+        }, {
+            "indexed": true,
+            "name": "_to",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "Transfer",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": true,
+            "name": "_owner",
+            "type": "address"
+        }, {
+            "indexed": true,
+            "name": "_spender",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "Approval",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "name": "_from",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_to",
+            "type": "address"
+        }],
+        "name": "TransferOwnership",
+        "type": "event"
+    }];
 
-    const decimals = (decDigits > 0) ? decDigits : 0;
+    var contractAddress = "0x3A9FfF453d50D4Ac52A6890647b823379ba36B9E";
 
-    return Number(amount.toFixed(decimals)).toString();
-}
+
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+    } else {
+        // set the provider you want from Web3.providers
+        //web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        web3 = new Web3(new Web3.providers.HttpProvider(
+            'https://mainnet.infura.io/v3/d49aab007464452cab5a8c32653bb437'))
+    }
+    var shuffle = new web3.eth.Contract(shuffleABI, contractAddress);
+
+    shuffle.methods.heapTop().call().then(function (result) {
+        $('#heapTop').html(web3.utils.fromWei(result[1], 'ether'));
+    });
+
+    function getHeapIndex(addy) {
+        return shuffle.methods.heapIndex(addy).call()
+    }
+
+    function getBalance(addy) {
+        return shuffle.methods.balanceOf(addy).call()
+    }
+
+
+
 
 export default {
   name: 'Body',
-  data: function() {
-    return {
-        winners: this.winners
-    }
-  },
-  methods:{
-      click_winner: function(item) {
-        var redirectWindow = window.open(`https://etherscan.io/tx/${item.tx}`, '_blank');
-        redirectWindow.location;
-      },
-  },
-  created: async function() {
-    this.winners = [];
-    const reparter = getToken(readWeb3());
-    reparter.events.Winner({
-            fromBlock: 8617285
-        }, (error, event) => {
-            if (this.winners.length > 10) {
-                this.winners.pop();
-            }
-            if (event) {
-                this.winners.unshift({
-                    address: event.returnValues._addr,
-                    address_short: shortAddress(event.returnValues._addr),
-                    amount: formatAmount(parseFloat(event.returnValues._value.toString()) / 10 ** 18),
-                    tx: event.transactionHash
-                });
-            }
-        }
-    );
-  }
+  
 }
 
 
@@ -404,6 +940,9 @@ export default {
 
 
 </script>
+
+
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

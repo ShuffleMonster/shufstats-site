@@ -1,6 +1,7 @@
 import Web3 from 'web3';
 import Env from './env.js';
 
+
 const reparterAbi = require('./contracts/Reparter.json');
 const tokenAbi = require('./contracts/Token.json');
 

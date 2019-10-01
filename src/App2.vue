@@ -1,40 +1,38 @@
 <template>
-  <div id="app">
-    <Head/>
-    <Navbar/>
+  <div id="app2">
+    <Eth/>
+    <!-- <Navbar/>
     <Body/>
     <Body2/>
     <index/>
     <Footer/>
-    <!-- <Index/>
+    <Index/>
     <Faq/> -->
     </div>
 </template>
 
 <script>
-import Head from './components/Head.vue'
-import Navbar from './components/Navbar.vue'
-import Body from './components/Body.vue'
-import Body2 from './components/Body2.vue'
-import Index from './components/Index.vue'
-import Footer from './components/Footer.vue'
-
+import Eth from './components/Eth.vue'
+// import Navbar from './components/Navbar.vue'
+// import Body from './components/Body.vue'
+// import Body2 from './components/Body2.vue'
+// import Index from './components/Index.vue'
+// import Footer from './components/Footer.vue'
 // import Join from './components/Join.vue'
 // import Faq from './components/Faq.vue'
 
 
 export default {
-  name: 'app',
+  name: 'app2',
   components: {
-    Head,
-    Navbar,
-    Body,
-    Body2,
-    Index,
-    Footer
-    
+    Eth
+    // Navbar,
+    // Body,
+    // Body2,
+    // Index,
+    // Footer,    
     // Join,
-    // Faq,
+    // Faq
   }
 }
 
