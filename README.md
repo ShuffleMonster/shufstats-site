@@ -1,5 +1,5 @@
 # 🃏 https://Stats.Shuffle.Monster 🃏 
-shufstats-v2 now uses Vue.
+shufstats-v1.2 now uses Vue.
 ----------------------------------------
 
 
