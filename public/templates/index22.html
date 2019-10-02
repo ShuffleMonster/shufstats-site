@@ -1,0 +1,367 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+
+
+    <%= require('html-loader!./templates/head.html') %>
+
+    <script>
+        function fetchJson() {
+          var xhr = new XMLHttpRequest();
+          // set a callback for when the json is loaded
+          xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) { // if json loaded successfully
+              var data = JSON.parse(this.responseText);
+              // do stuff with data
+              document.querySelector("#apiVersion").innerText = data["apiVersion"];
+              document.querySelector("#name").innerText = data["name"];
+              document.querySelector("#symbol").innerText = data["symbol"];
+              document.querySelector("#contractAddress").innerText = data["contractAddress"];
+              document.querySelector("#decimals").innerText = data["decimals"];
+              document.querySelector("#currentEthBlock").innerText = data["currentEthBlock"];
+              document.querySelector("#initialSupply").innerText = data["initialSupply"];
+              document.querySelector("#circulatingSupplyReadable").innerText = data["circulatingSupplyReadable"];
+              document.querySelector("#tokensBurned").innerText = data["tokensBurned"];
+              document.querySelector("#heapSize").innerText = data["heapSize"];
+              document.querySelector("#lastHeapAddress").innerText = data["heapTopAddress"];
+              document.querySelector("#lastHeapAmountReadable").innerText = data["heapTopAmountReadable"];
+    
+            }
+          };
+          // fetch the json
+          xhr.open("GET", "https://api2.shuffle.monster", true);
+          xhr.send();
+        }
+        window.onload = function () {
+          fetchJson();
+        };
+      </script>
+
+</head>
+
+<body>
+
+
+
+    <%= require('html-loader!./templates/navbar-header.html') %>
+
+
+
+
+
+  <div class="wrapper">
+
+    <div class="w3-container" style="padding-top:22px;">
+      <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+    </div>
+
+    <div class="w3-row-padding">
+      <div class="top-1 w3-third w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>52</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Messages</h4>
+        </div>
+      </div>
+
+      <div class="top-2 w3-third w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>23</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Shares</h4>
+        </div>
+      </div>
+
+      <div class="top-3 w3-third w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-text-white w3-padding-16">
+          <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>50</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Users</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-row-padding">
+      <div class="w3-container w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <h4>Track your Shuffle Monster Tokens</h4>
+          <p align="center">
+            <font size="2px" Style="font-weight: 50;">paste your wallet addresses below</font>
+            <font size="2" style="color: #a8a8a8a4; font-weight: 50;"> <br><i>input one address per line</i></font>
+            <textarea id="myTextarea" placeholder="0x69696562885eB3C9a609f957efd150DF93BA8c2e
+0x3A9FfF453d50D4Ac52A6890647b823379ba36B9E
+0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B
+0x1Db3439a222C519ab44bb1144fC28167b4Fa6EE6
+0x4Cdc86fa95Ec2704f0849825f1F8b077deeD8d39" style="height: 125px">
+</textarea>
+          </p>
+          <input type="submit" value="Get Heap Results" class="btn btn-success" onclick="myFunction()"></input>
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="w3-row-padding">
+      <div class="w3-half w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <h4>My Heap Spots</h4>
+          <div id="mySpots">
+            <div id="addy"></div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="w3-half w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <h4>My Address Balances</h4>
+          <div id="myBalances"></div>
+          <div id="addy2"></div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="w3-row-padding">
+      <div class="w3-quarter w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>52</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Messages</h4>
+        </div>
+      </div>
+      <div class="w3-quarter w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>99</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Views</h4>
+        </div>
+      </div>
+      <div class="w3-quarter w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>23</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Shares</h4>
+        </div>
+      </div>
+      <div class="w3-quarter w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-text-white w3-padding-16">
+          <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>50</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Users</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-panel">
+      <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-half">
+          <h5>Feeds</h5>
+          <table class="w3-table-all w3-round w3-hoverable w3-green w3-card-4">
+            <tr>
+              <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+              <td>New record, over 90 views.</td>
+              <td><i>10 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
+              <td>Database error.</td>
+              <td><i>15 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+              <td>New record, over 40 users.</td>
+              <td><i>17 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+              <td>New comments.</td>
+              <td><i>25 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
+              <td>Check transactions.</td>
+              <td><i>28 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
+              <td>CPU overload.</td>
+              <td><i>35 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+              <td>New shares.</td>
+              <td><i>39 mins</i></td>
+            </tr>
+          </table>
+        </div>
+        <div class="w3-half">
+          <h5>Feeds</h5>
+          <table class="w3-table-all w3-round w3-hoverable w3-green w3-card-4">
+            <tr>
+              <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+              <td>New record, over 90 views.</td>
+              <td><i>10 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
+              <td>Database error.</td>
+              <td><i>15 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+              <td>New record, over 40 users.</td>
+              <td><i>17 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+              <td>New comments.</td>
+              <td><i>25 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
+              <td>Check transactions.</td>
+              <td><i>28 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
+              <td>CPU overload.</td>
+              <td><i>35 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+              <td>New shares.</td>
+              <td><i>39 mins</i></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+  <div class="wrapper">
+    <div class="row">
+      <div class="left table-all w3-round w3-card-4 w3-hoverable w3-striped">
+
+        <table align="center">
+
+          <tr>
+            <h4>Contract Details</h4>
+            <td align="left">
+              <font size="2">
+                <p>
+                  <font style="color: #ffd000;">Version:</font>
+                  <span id="apiVersion">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Name:</font>
+                  <span id="name">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Symbol:</font>
+                  <span id="symbol">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Contract Address:</font>
+                  <span id="contractAddress">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Decimals:</font>
+                  <span id="decimals">loading...</span> (18)
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Current Ethereum Block #:</font>
+                  <span id="currentEthBlock">loading...</span>
+                </p>
+              </font>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="right w3-round w3-card-4">
+        <table align="center">
+          <tr>
+            <h4>Token Stats</h4>
+            <td align="left">
+              <font size="2">
+
+                <p>
+                  <font style="color: #ffd000;">Initial Supply:</font>
+                  <span id="initialSupply">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Current Circulating Supply:</font>
+                  <span id="circulatingSupplyReadable">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Token Burned:</font>
+                  <span id="tokensBurned">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Current Heap Size:</font>
+                  <span id="heapSize">loading...</span> / 512
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Last address on the Heap:</font>
+                  <span id="lastHeapAddress">loading...</span>
+
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Amount of tokens the last spot holds:</font> <span
+                    id="lastHeapAmountReadable">loading...</span>
+                </p>
+              </font>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+<footer>
+  
+    <%= require('html-loader!./templates/footer.html') %>
+
+</footer>
+<%= require('html-loader!./templates/web3.html') %>
+
+</html>

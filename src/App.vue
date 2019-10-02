@@ -2,25 +2,22 @@
   <div id="app">
     <Head/>
     <Navbar/>
+    <!-- <Eth/> -->
     <Body/>
-    <Body2/>
-    <index/>
+    <Index/>
+    <Index2/>
     <Footer/>
-    <!-- <Index/>
-    <Faq/> -->
     </div>
 </template>
 
 <script>
 import Head from './components/Head.vue'
 import Navbar from './components/Navbar.vue'
+// import Eth from './components/Eth.vue'
 import Body from './components/Body.vue'
-import Body2 from './components/Body2.vue'
 import Index from './components/Index.vue'
+import Index2 from './components/Index2.vue'
 import Footer from './components/Footer.vue'
-
-// import Join from './components/Join.vue'
-// import Faq from './components/Faq.vue'
 
 
 export default {
@@ -28,13 +25,11 @@ export default {
   components: {
     Head,
     Navbar,
+    // Eth,
     Body,
-    Body2,
     Index,
+    Index2,
     Footer
-    
-    // Join,
-    // Faq,
   }
 }
 

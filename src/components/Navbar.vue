@@ -3,7 +3,7 @@
 
 <nav>
     <div class="navbar navigation w3-card-4">
-        <a href="https://stats.shuffle.monster">
+        <a href="./">
             <i class="fas fa-home" style="font-size:20px;color:#ffd000;"></i>&nbsp;&nbsp;Home</a>
         <a href="https://github.com/shufflemonster" target="_blank">
             <i class="fab fa-github-alt" style="font-size:20px;color:#ffd000;"></i>&nbsp;&nbsp;Github

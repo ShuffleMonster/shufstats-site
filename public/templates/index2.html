@@ -1,0 +1,1102 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>🃏SHUF🃏 Stats.Shuffle.Monster</title>
+    
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    
+    <!-- HTML Meta Tags -->
+    <meta name="description" content="Shuffle Monster Heap Tracker & Token Stats." />
+    
+    <meta property="og:site_name" content="🃏SHUF🃏 Stats.Shuffle.Monster" />
+    <meta property="og:image"
+      content="https://raw.githubusercontent.com/ShuffleMonster/mediapack/master/Media/eye-large.png" />
+    <meta property="og:description" content="Shuffle Monster Heap Tracker & Token Stats." />
+    <meta property="og:title" content="Stats.Shuffle.Monster" />
+    
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="🃏SHUF🃏 Stats.Shuffle.Monster" />
+    <meta itemprop="description" content="Shuffle Monster Heap Tracker & Token Stats." />
+    <meta itemprop="image"
+      content="https://raw.githubusercontent.com/ShuffleMonster/mediapack/master/Media/eye-large.png" />
+    
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://Stats.Shuffle.Monster" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="🃏SHUF🃏 Stats.Shuffle.Monster" />
+    <meta property="og:description" content="Shuffle Monster Heap Tracker & Token Stats." />
+    <meta property="og:image"
+      content="https://raw.githubusercontent.com/ShuffleMonster/mediapack/master/Media/eye-large.png" />
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="🃏SHUF🃏 Stats.Shuffle.Monster" />
+    <meta name="twitter:description" content="Shuffle Monster Heap Tracker & Token Stats." />
+    <meta name="twitter:image"
+      content="https://raw.githubusercontent.com/ShuffleMonster/mediapack/master/Media/eye-large.png" />
+    
+    <meta name="keywords"
+      content="SHUF, Deflationary, Deflationary Token, Shuffle Monster, Shuffle, Heap, ShuffleMonster, Tokenomics, ERC20, Token, Ethereum, ETH, Crypto, Monster" />
+    
+    <link rel="icon" type="image/icon" href="/app/assets/img/eyeball.ico" />
+    
+    <script src="https://kit.fontawesome.com/6e91a3b975.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
+    </style>
+
+
+
+
+
+
+  <script>
+    function fetchJson() {
+      var xhr = new XMLHttpRequest();
+      // set a callback for when the json is loaded
+      xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) { // if json loaded successfully
+          var data = JSON.parse(this.responseText);
+          // do stuff with data
+          document.querySelector("#apiVersion").innerText = data["apiVersion"];
+          document.querySelector("#name").innerText = data["name"];
+          document.querySelector("#symbol").innerText = data["symbol"];
+          document.querySelector("#contractAddress").innerText = data["contractAddress"];
+          document.querySelector("#decimals").innerText = data["decimals"];
+          document.querySelector("#currentEthBlock").innerText = data["currentEthBlock"];
+          document.querySelector("#initialSupply").innerText = data["initialSupply"];
+          document.querySelector("#circulatingSupplyReadable").innerText = data["circulatingSupplyReadable"];
+          document.querySelector("#tokensBurned").innerText = data["tokensBurned"];
+          document.querySelector("#heapSize").innerText = data["heapSize"];
+          document.querySelector("#lastHeapAddress").innerText = data["heapTopAddress"];
+          document.querySelector("#lastHeapAmountReadable").innerText = data["heapTopAmountReadable"];
+
+        }
+      };
+      // fetch the json
+      xhr.open("GET", "https://api2.shuffle.monster", true);
+      xhr.send();
+    }
+    window.onload = function () {
+      fetchJson();
+    };
+  </script>
+
+</head>
+
+<body>
+
+
+
+    <div class="header">
+        <a class="logo" href="./">
+            <p>
+                <img height="75" src="./../assets/img/hat-logo.svg" />
+            </p>
+            <span class="logo" align="right">
+                <font style="font-size: 30px; color: #ffffff; font-weight: 600;">
+                    Stats.Shuffle.Monster
+                </font>
+                <br />
+                <font style="font-size: 20px; font-weight: 600;">Heap Tracker & Token Stats
+                </font>
+            </span>
+        </a>
+    </div>
+    
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="navbar navigation">
+            <a href="https://stats.shuffle.monster">
+                <i class="fas fa-home" style="font-size:20px;color:#ffd000;"></i>&nbsp;&nbsp;Home</a>
+            <a href="https://github.com/shufflemonster" target="_blank">
+                <i class="fab fa-github-alt" style="font-size:20px;color:#ffd000;"></i>&nbsp;&nbsp;Github
+            </a>
+            <a href="https://medium.com/shufflemonster" target="_blank">
+    
+                <i class="fab fa-medium-m" style="font-size:20px;color:#ffd000;"></i>&nbsp;&nbsp;Medium</a>
+            </a>
+            <a href="https://t.me/shuftoken" target="_blank">
+    
+                <i class="fab fa-telegram-plane" style="font-size:20px;color:#ffd000;"></i>&nbsp;&nbsp;Telegram</a>
+            </a>
+            <a href="https://twitter.com/ShuffleToken" target="_blank">
+    
+                <i class="fab fa-twitter" style="font-size:20px;color:#ffd000;"></i>&nbsp;&nbsp;Twitter</a>
+            </a>
+            <a href="https://www.reddit.com/r/ShuffleMonster/" target="_blank">
+    
+                <i class="fab fa-reddit-alien" style="font-size:20px;color:#ffd000;"></i>&nbsp;&nbsp;Reddit</a>
+        </div>
+    </nav>
+
+
+
+
+
+  <div class="wrapper">
+
+    <div class="w3-container" style="padding-top:22px;">
+      <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+    </div>
+
+    <div class="w3-row-padding">
+      <div class="top-1 w3-third w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>52</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Messages</h4>
+        </div>
+      </div>
+
+      <div class="top-2 w3-third w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>23</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Shares</h4>
+        </div>
+      </div>
+
+      <div class="top-3 w3-third w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-text-white w3-padding-16">
+          <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>50</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Users</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-row-padding">
+      <div class="w3-container w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <h4>Track your Shuffle Monster Tokens</h4>
+          <p align="center">
+            <font size="2px" Style="font-weight: 50;">paste your wallet addresses below</font>
+            <font size="2" style="color: #a8a8a8a4; font-weight: 50;"> <br><i>input one address per line</i></font>
+            <textarea id="myTextarea" placeholder="0x69696562885eB3C9a609f957efd150DF93BA8c2e
+0x3A9FfF453d50D4Ac52A6890647b823379ba36B9E
+0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B
+0x1Db3439a222C519ab44bb1144fC28167b4Fa6EE6
+0x4Cdc86fa95Ec2704f0849825f1F8b077deeD8d39" style="height: 125px">
+</textarea>
+          </p>
+          <input type="submit" value="Get Heap Results" class="btn btn-success" onclick="myFunction()"></input>
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="w3-row-padding">
+      <div class="w3-half w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <h4>My Heap Spots</h4>
+          <div id="mySpots">
+            <div id="addy"></div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="w3-half w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <h4>My Address Balances</h4>
+          <div id="myBalances"></div>
+          <div id="addy2"></div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="w3-row-padding">
+      <div class="w3-quarter w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>52</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Messages</h4>
+        </div>
+      </div>
+      <div class="w3-quarter w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>99</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Views</h4>
+        </div>
+      </div>
+      <div class="w3-quarter w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>23</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Shares</h4>
+        </div>
+      </div>
+      <div class="w3-quarter w3-margin-bottom">
+        <div class="w3-container w3-card-4 w3-green w3-round w3-text-white w3-padding-16">
+          <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>50</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Users</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-panel">
+      <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-half">
+          <h5>Feeds</h5>
+          <table class="w3-table-all w3-round w3-hoverable w3-green w3-card-4">
+            <tr>
+              <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+              <td>New record, over 90 views.</td>
+              <td><i>10 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
+              <td>Database error.</td>
+              <td><i>15 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+              <td>New record, over 40 users.</td>
+              <td><i>17 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+              <td>New comments.</td>
+              <td><i>25 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
+              <td>Check transactions.</td>
+              <td><i>28 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
+              <td>CPU overload.</td>
+              <td><i>35 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+              <td>New shares.</td>
+              <td><i>39 mins</i></td>
+            </tr>
+          </table>
+        </div>
+        <div class="w3-half">
+          <h5>Feeds</h5>
+          <table class="w3-table-all w3-round w3-hoverable w3-green w3-card-4">
+            <tr>
+              <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+              <td>New record, over 90 views.</td>
+              <td><i>10 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
+              <td>Database error.</td>
+              <td><i>15 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+              <td>New record, over 40 users.</td>
+              <td><i>17 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+              <td>New comments.</td>
+              <td><i>25 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
+              <td>Check transactions.</td>
+              <td><i>28 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
+              <td>CPU overload.</td>
+              <td><i>35 mins</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+              <td>New shares.</td>
+              <td><i>39 mins</i></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+  <div class="wrapper">
+    <div class="row">
+      <div class="left table-all w3-round w3-card-4 w3-hoverable w3-striped">
+
+        <table align="center">
+
+          <tr>
+            <h4>Contract Details</h4>
+            <td align="left">
+              <font size="2">
+                <p>
+                  <font style="color: #ffd000;">Version:</font>
+                  <span id="apiVersion">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Name:</font>
+                  <span id="name">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Symbol:</font>
+                  <span id="symbol">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Contract Address:</font>
+                  <span id="contractAddress">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Decimals:</font>
+                  <span id="decimals">loading...</span> (18)
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Current Ethereum Block #:</font>
+                  <span id="currentEthBlock">loading...</span>
+                </p>
+              </font>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="right w3-round w3-card-4">
+        <table align="center">
+          <tr>
+            <h4>Token Stats</h4>
+            <td align="left">
+              <font size="2">
+
+                <p>
+                  <font style="color: #ffd000;">Initial Supply:</font>
+                  <span id="initialSupply">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Current Circulating Supply:</font>
+                  <span id="circulatingSupplyReadable">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Token Burned:</font>
+                  <span id="tokensBurned">loading...</span>
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Current Heap Size:</font>
+                  <span id="heapSize">loading...</span> / 512
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Last address on the Heap:</font>
+                  <span id="lastHeapAddress">loading...</span>
+
+                </p>
+                <p>
+                  <font style="color: #ffd000;">Amount of tokens the last spot holds:</font> <span
+                    id="lastHeapAmountReadable">loading...</span>
+                </p>
+              </font>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+<footer>
+  
+
+
+  <!-- Footer -->
+<div class="footer">
+
+    <div class="footer-bottom">
+
+
+
+
+        <a style="text-decoration: none;" href="./api.html" target="_blank">
+            <h4>SHUF Developer Api Link</h4>
+        </a>
+    </div>
+    <div class="footer-top">
+
+
+        <font size="4" color="#C0392B">❤</font>&nbsp;&nbsp;<a style="text-decoration: none;"
+            href="https://etherscan.io/address/0x69696562885eB3C9a609f957efd150DF93BA8c2e"
+            target="_blank">0x69696562885eB3C9a609f957efd150DF93BA8c2e</a>
+
+    </div>
+
+    <div class="copyright">
+        <p>
+            <font size="1">
+                The source code is licensed
+                <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+                <br>The website content is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC
+                    BY NC SA 4.0</a>.
+            </font>
+        </p>
+    </div>
+    <!--Start ClickToTop-->
+
+    <div class="totop">
+        <p align="right">
+            <a href="#top" id="totop">
+                <font size="8"><i style="opacity: 0.5;" class="fa fa-arrow-alt-circle-up"></i>
+            </a></font>
+        </p>
+    </div>
+</div>
+
+
+</footer>
+
+<script>
+    let addresses = [];
+
+    function myFunction() {
+        addresses = document.getElementById("myTextarea").value.split(/\r?\n/);
+        $('#mySpots')[0].innerHTML = ''
+        $('#myBalances')[0].innerHTML = ''
+
+        addresses.map(address => {
+            console.log('address - looping!', address)
+            getHeapIndex(address).then(function (result) {
+                console.log(address);
+                let h =
+                    `<font size="2px" Style="font-weight: 100;"><a style="color: #ffffff" href="https://etherscan.io/address/${address}" target="_blank">${address}</a></br>^  <font size="3" style="color: #ff3c00f8; font-weight: 600;">is # ${result} in the Heap</font> </br></br>`;
+                console.log(h);
+                $('#mySpots').append(h);
+            });
+
+            getBalance(address).then(function (result) {
+                let h =
+                    `<font size="2px" Style="font-weight: 100;"><a style="color: #ffffff" href="https://etherscan.io/address/${address}" target="_blank">${address}</a></br>^ Has</font> <font size="3" style="color: #ff3c00f8; font-weight: 600;">${web3.utils.fromWei(result, 'ether')} SHUF</font>  </br></br>`;
+                console.log('@@@', h);
+                $('#myBalances').append(h);
+            });
+        })
+    }
+
+    var shuffleABI = [{
+        "constant": true,
+        "inputs": [],
+        "name": "name",
+        "outputs": [{
+            "name": "",
+            "type": "string"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_to",
+            "type": "address"
+        }, {
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "transferWithFee",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "_i",
+            "type": "uint256"
+        }],
+        "name": "heapEntry",
+        "outputs": [{
+            "name": "",
+            "type": "address"
+        }, {
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_spender",
+            "type": "address"
+        }, {
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "approve",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_owner",
+            "type": "address"
+        }],
+        "name": "setOwner",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "",
+            "type": "address"
+        }],
+        "name": "whitelistTo",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_from",
+            "type": "address"
+        }, {
+            "name": "_to",
+            "type": "address"
+        }, {
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "transferFrom",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "decimals",
+        "outputs": [{
+            "name": "",
+            "type": "uint8"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "extraGas",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_to",
+            "type": "address"
+        }, {
+            "name": "_amount",
+            "type": "uint256"
+        }],
+        "name": "init",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "",
+            "type": "address"
+        }],
+        "name": "whitelistFrom",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "heapTop",
+        "outputs": [{
+            "name": "",
+            "type": "address"
+        }, {
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "_addr",
+            "type": "address"
+        }],
+        "name": "balanceOf",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "topSize",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "name": "_cat",
+            "type": "uint256"
+        }],
+        "name": "getNonce",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_from",
+            "type": "address"
+        }, {
+            "name": "_to",
+            "type": "address"
+        }, {
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "transferFromWithFee",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_gas",
+            "type": "uint256"
+        }],
+        "name": "setExtraGas",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "owner",
+        "outputs": [{
+            "name": "",
+            "type": "address"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "symbol",
+        "outputs": [{
+            "name": "",
+            "type": "string"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "heap",
+        "outputs": [{
+            "name": "",
+            "type": "address"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "name": "_whitelisted",
+            "type": "bool"
+        }],
+        "name": "setWhitelistedTo",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_to",
+            "type": "address"
+        }, {
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "transfer",
+        "outputs": [{
+            "name": "",
+            "type": "bool"
+        }],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "_addr",
+            "type": "address"
+        }],
+        "name": "heapIndex",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_heap",
+            "type": "address"
+        }],
+        "name": "setHeap",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_name",
+            "type": "string"
+        }],
+        "name": "setName",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "FEE",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [{
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "name": "_spender",
+            "type": "address"
+        }],
+        "name": "allowance",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": true,
+        "inputs": [],
+        "name": "heapSize",
+        "outputs": [{
+            "name": "",
+            "type": "uint256"
+        }],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "constant": false,
+        "inputs": [{
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "name": "_whitelisted",
+            "type": "bool"
+        }],
+        "name": "setWhitelistedFrom",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": true,
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "Winner",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "name": "_prev",
+            "type": "string"
+        }, {
+            "indexed": false,
+            "name": "_new",
+            "type": "string"
+        }],
+        "name": "SetName",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "name": "_prev",
+            "type": "uint256"
+        }, {
+            "indexed": false,
+            "name": "_new",
+            "type": "uint256"
+        }],
+        "name": "SetExtraGas",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "name": "_prev",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_new",
+            "type": "address"
+        }],
+        "name": "SetHeap",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_whitelisted",
+            "type": "bool"
+        }],
+        "name": "WhitelistFrom",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "name": "_addr",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_whitelisted",
+            "type": "bool"
+        }],
+        "name": "WhitelistTo",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": true,
+            "name": "_from",
+            "type": "address"
+        }, {
+            "indexed": true,
+            "name": "_to",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "Transfer",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": true,
+            "name": "_owner",
+            "type": "address"
+        }, {
+            "indexed": true,
+            "name": "_spender",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "Approval",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{
+            "indexed": false,
+            "name": "_from",
+            "type": "address"
+        }, {
+            "indexed": false,
+            "name": "_to",
+            "type": "address"
+        }],
+        "name": "TransferOwnership",
+        "type": "event"
+    }];
+
+    var contractAddress = "0x3A9FfF453d50D4Ac52A6890647b823379ba36B9E";
+
+
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+    } else {
+        // set the provider you want from Web3.providers
+        //web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        web3 = new Web3(new Web3.providers.HttpProvider(
+            'https://mainnet.infura.io/v3/d49aab007464452cab5a8c32653bb437'))
+    }
+    var shuffle = new web3.eth.Contract(shuffleABI, contractAddress);
+
+    shuffle.methods.heapTop().call().then(function (result) {
+        $('#heapTop').html(web3.utils.fromWei(result[1], 'ether'));
+    });
+
+    function getHeapIndex(addy) {
+        return shuffle.methods.heapIndex(addy).call()
+    }
+
+    function getBalance(addy) {
+        return shuffle.methods.balanceOf(addy).call()
+    }
+</script>
+
+</html>
