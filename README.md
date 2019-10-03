@@ -1,7 +1,7 @@
 # 🃏 https://Stats.Shuffle.Monster 🃏 
 shufstats-v1.2 now uses Vue.
 
-view the latest updates as their updated live @ https://heapwars.com
+view the latest updates and versions as they're updated live @ https://heapwars.com
 ----------------------------------------
 
 
