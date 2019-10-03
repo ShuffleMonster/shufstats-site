@@ -14,9 +14,9 @@ Header
     url(.\..\img\greenbg-og.png) no-repeat center;
   background-size: 50, cover; */
 
-  background: url(../../src/assets/shuf-banner-fade3.png) left top no-repeat,linear-gradient(90deg, #0042005e 9.11%, #004e00 83.74%), #001805;
+  background: url(../../src/assets/shuf-banner-fade3.png) left top no-repeat, linear-gradient(90deg, #0042005e 9.11%, #004e00 83.74%), #001805;
   /* filter: drop-shadow(0px 0px 8px #00810b4d); */
-    will-change: opacity;
+  will-change: opacity;
   background-blend-mode: lighten, lighten;
   padding-right: 10px;
   background-size: cover, cover;
@@ -129,41 +129,47 @@ nav {
 }
 
 
-.btn-uniswap{
-    background-color: #B55ADD;
-    border-color: #ac45d9;
-    color: #fff;
+.btn-uniswap {
+  background-color: #B55ADD;
+  border-color: #ac45d9;
+  color: #fff;
 }
-.btn-bamboo{
-    background-color: #40b281;
-    border-color: #399f73;
-    color: #fff;
+
+.btn-bamboo {
+  background-color: #40b281;
+  border-color: #399f73;
+  color: #fff;
 }
-.btn-telegram{
-    background-color: #0088cc;
-    border-color: #0098e4;
-    color: #fff;
+
+.btn-telegram {
+  background-color: #0088cc;
+  border-color: #0098e4;
+  color: #fff;
 }
+
 .btn {
-    /* width: 250px; */
-    display: inline;
-    text-align: center;
-    display: inline;
+  /* width: 250px; */
+  display: inline;
+  text-align: center;
+  display: inline;
 }
+
 .btn:hover {
-    color: white;
-    font-weight: 900;
+  color: white;
+  font-weight: 900;
 }
 
 @media screen and (max-width: 767px) {
-  .mobile-top-margin {margin-top:22px;}
+  .mobile-top-margin {
+    margin-top: 22px;
+  }
 }
 
 /*----------------------------------------
 head
 ----------------------------------------*/
 
-.eye{
+.eye {
   position: absolute;
   top: 171px;
   left: 132px;
@@ -172,10 +178,12 @@ head
   transform: rotateZ(0deg);
   will-change: transform;
 }
-.my-auto{
+
+.my-auto {
   margin-top: auto;
   margin-bottom: auto;
 }
+
 .join-button {
   position: relative;
   text-align: left;
@@ -191,24 +199,28 @@ head
   line-height: 93.19%;
   padding: 14px;
 }
-.shuff-card{
+
+.shuff-card {
   width: 45px;
   height: auto;
   margin: auto;
 }
-.shuff-card-image{
+
+.shuff-card-image {
   width: 100%;
   z-index: 30;
   position: relative;
 }
-.card-glow{
-    filter: drop-shadow(0px 0px 20px #95ff5786);
-    left: 0%;
-    position: top;
-    top: 5px;
-    will-change: opacity;
+
+.card-glow {
+  filter: drop-shadow(0px 0px 20px #95ff5786);
+  left: 0%;
+  position: top;
+  top: 5px;
+  will-change: opacity;
 
 }
+
 .background {
   position: static;
   width: 100%;
@@ -221,7 +233,9 @@ head
 }
 
 @media screen and (max-width: 767px) {
-  .mobile-top-margin {margin-top:44px;}
+  .mobile-top-margin {
+    margin-top: 44px;
+  }
 }
 
 
@@ -283,7 +297,7 @@ h1 {
   color: #ffffff;
 }
 
-h2 :hover{
+h2 :hover {
   color: #ffffff;
 }
 
@@ -294,15 +308,19 @@ h2 {
   color: #ffd000;
 }
 
+/* h3 :hover {
+  color: #001302e5;
+} */
+
 h3 {
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  color: #ffd000;
+  font-weight: 600;
+  color: #ffffff;
 }
 
 h4 {
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
+  font-weight: 600;
   color: #ffffff;
 }
 
@@ -313,7 +331,7 @@ h5 {
 
 h6 {
   font-family: "Poppins", sans-serif;
-  color: #ffffff;
+  color: #ffd000;
   font-weight: 600;
 }
 

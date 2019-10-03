@@ -241,7 +241,7 @@ h2 {
 }
 
 h3 {
-    font-size: 24px
+    font-size: 27px
 }
 
 h4 {
@@ -262,12 +262,17 @@ h6 {
 
 h1,
 h2,
-h3,
 h4,
 h5,
 h6 {
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-weight: 400;
+    font-family: "Poppins", sans-serif !important;
+    font-weight: 600;
+    margin: 10px 0
+}
+
+h3 {
+    font-family: "Poppins", sans-serif !important;
+    font-weight: 600;
     margin: 10px 0
 }
 
@@ -301,6 +306,7 @@ a {
     width: 100%;
     display: table
 }
+
 .w3-table-all {
     border: 1px solid #000000
 }
@@ -706,15 +712,16 @@ a {
         width: 16.66666%
     }
 
-    .w3-col.m2, 
+    .w3-col.m2,
     .w3-fith {
         width: 20%
-  
     }
+
     .w3-col.m3,
     .w3-quarter {
         width: 24.99999%
     }
+
     /* .w3-quarter {
         background-color: #051800bd !important;
     } */
@@ -1526,27 +1533,40 @@ a {
     color: #fff !important;
     background-color: #607d8b !important
 }
+
 .w3-green {
     background-color: #051800bb;
+}
+
+.w3-green:hover h6 {
+    color: #051800 !important;
+    background-color: transparent,  !important;
+
+}
+
+.w3-green:hover h3 {
+    color: #fffb00 !important;
+    background-color: transparent,  !important;
+
 }
 
 /* .icon {
     fill: #ffd000; 
  } */
- 
 
- .w3-green svg{
-    height: 65px;
+
+.w3-green svg {
+    height: 70px;
     width: 20px;
     width: auto;
     display: inline;
-  }
+}
 
 
 
-.w3-green svg path{
-  weight: bold;
-  fill: currentcolor;
+.w3-green svg path {
+    weight: bold;
+    fill: currentcolor;
 }
 
 
@@ -1822,23 +1842,25 @@ a {
     color: #f1f1f1 !important
 }
 
-.w3-text-dark-grey{
+.w3-text-dark-grey {
     color: #0c0c0e !important;
     outline: 3px solid #090720;
     background: #b8b8b8;
     padding: 3px;
 }
+
 .w3-hover-text-dark-grey:hover {
     color: #b89dff !important;
     outline: #000
 }
 
-.w3-text-red{
+.w3-text-red {
     color: #ff3c00 !important;
     outline: 3px solid #09072000;
     background: #00200800;
     padding: 3px;
 }
+
 .w3-hover-text-red:hover {
     color: #ff3c00 !important;
     outline: #000

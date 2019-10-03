@@ -1,9 +1,20 @@
 <template>
 
 <body>
-  <div class="wrapper">
-        <div class="w3-row-padding">
-            <div class="w3-row w3-margin-bottom">
+
+    <div class="w3-row-padding">
+      <div class="top-1 w3-third w3-margin-bottom">
+        <div style="height: 350px;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>52</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Messages</h4>
+        </div>
+      </div>
+
+      <div class="top-2 w3-third w3-margin-bottom">
         <div class="w3-badge">
 
           <h5>Shuffle Monster txns</h5>
@@ -13,12 +24,31 @@
             
                 <tr v-on:click="click_transfer(item)" v-for="item in transfers" v-bind:key="item.tx">
                    <td><i class="fab fa-ethereum w3-text-dark-grey w3-xxlarge"></i></td>
-      <td>{{ item.address_short2 }}</td>
+      <td>{{ item.address_short }}</td>
        <td>transfers {{ item.amount }} SHUF</td>
        </tr>
             </tbody>
           </table>
         </div>
+      </div>
+
+      <div class="top-3 w3-third w3-margin-bottom">
+        <div style="height: 350px;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+          <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+          <div class="w3-right">
+            <h3>50</h3>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Users</h4>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="wrapper">
+        <div class="w3-row-padding">
+            <div class="w3-row w3-margin-bottom">
+
       </div>
       </div>
       </div>
@@ -132,7 +162,7 @@ data: function() {
     reparter.events.Transfer({
             fromBlock: 8617285
         }, (error, event) => {
-            if (this.transfers.length > 10) {
+            if (this.transfers.length > 5) {
                 this.transfers.pop();
             }
             if (event) {
@@ -159,41 +189,41 @@ data: function() {
 
 
 
-    function fetchJson() {
-      var xhr = new XMLHttpRequest();
-      // set a callback for when the json is loaded
-      xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) { // if json loaded successfully
-          var data = JSON.parse(this.responseText);
-          // do stuff with data
+    // function fetchJson() {
+    //   var xhr = new XMLHttpRequest();
+    //   // set a callback for when the json is loaded
+    //   xhr.onreadystatechange = function () {
+    //     if (this.readyState == 4 && this.status == 200) { // if json loaded successfully
+    //       var data = JSON.parse(this.responseText);
+    //       // do stuff with data
 
 
           
-          document.querySelector("#initialSupply").innerText = data["initialSupply"];
-          document.querySelector("#circulatingSupplyReadable").innerText = data["circulatingSupplyReadable"];
-          document.querySelector("#tokensBurned").innerText = data["tokensBurned"];
-          document.querySelector("#lastHeapAmountReadable").innerText = data["heapTopAmountReadable"];
-          document.querySelector("#heapSize").innerText = data["heapSize"];
+    //       document.querySelector("#initialSupply").innerText = data["initialSupply"];
+    //       document.querySelector("#circulatingSupplyReadable").innerText = data["circulatingSupplyReadable"];
+    //       document.querySelector("#tokensBurned").innerText = data["tokensBurned"];
+    //       document.querySelector("#lastHeapAmountReadable").innerText = data["heapTopAmountReadable"];
+    //       document.querySelector("#heapSize").innerText = data["heapSize"];
 
           
-          // document.querySelector("#apiVersion").innerText = data["apiVersion"];
-          // document.querySelector("#name").innerText = data["name"];
-          // document.querySelector("#symbol").innerText = data["symbol"];
-          // document.querySelector("#contractAddress").innerText = data["contractAddress"];
-          // document.querySelector("#decimals").innerText = data["decimals"];
-          // document.querySelector("#currentEthBlock").innerText = data["currentEthBlock"];      
-          // document.querySelector("#lastHeapAddress").innerText = data["heapTopAddress"];
+    //       // document.querySelector("#apiVersion").innerText = data["apiVersion"];
+    //       // document.querySelector("#name").innerText = data["name"];
+    //       // document.querySelector("#symbol").innerText = data["symbol"];
+    //       // document.querySelector("#contractAddress").innerText = data["contractAddress"];
+    //       // document.querySelector("#decimals").innerText = data["decimals"];
+    //       // document.querySelector("#currentEthBlock").innerText = data["currentEthBlock"];      
+    //       // document.querySelector("#lastHeapAddress").innerText = data["heapTopAddress"];
           
 
-        }
-      };
-      // fetch the json
-      xhr.open("GET", "https://api2.shuffle.monster", true);
-      xhr.send();
-    }
-    window.onload = function () {
-      fetchJson();
-    };
+    //     }
+    //   };
+    //   // fetch the json
+    //   xhr.open("GET", "https://api2.shuffle.monster", true);
+    //   xhr.send();
+    // }
+    // window.onload = function () {
+    //   fetchJson();
+    // };
 
 
 
