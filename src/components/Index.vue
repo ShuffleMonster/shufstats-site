@@ -3,7 +3,7 @@
 <body>
 
     <div class="w3-row-padding">
-      <div class="top-1 w3-third w3-margin-bottom">
+      <div class="top-1 w3-half w3-margin-bottom">
         <div style="height: 350px;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
           <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
           <div class="w3-right">
@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <div class="top-2 w3-third w3-margin-bottom">
+      <div class="top-2 w3-half w3-margin-bottom">
         <div class="w3-badge">
 
           <h5>Shuffle Monster txns</h5>
