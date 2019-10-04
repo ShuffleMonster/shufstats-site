@@ -1133,6 +1133,11 @@ a {
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
+.w3-card-6 {
+    height: 100%;
+    background-color: transparent;
+}
+
 .w3-spin {
     animation: w3-spin 2s infinite linear
 }
