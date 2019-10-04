@@ -1590,6 +1590,17 @@ a {
     color: #ffffff;
 }
 
+.totop svg {
+    height: 45px;
+    width: auto;
+    display: inline;
+}
+
+.totop svg path {
+    weight: bold;
+    fill: currentcolor;
+}
+
 
 .w3-hover-green:hover {
     color: #051800 !important;

@@ -11,6 +11,7 @@
     <div class="top-2 w3-row-padding h3-hoverable">
 
       <div class="w3-fith w3-margin-bottom">
+      <div class="w3-hover-shadow">
         <div class="w3-container w3-card-4 w3-green w3-hover-green w3-round w3-padding-16">
           <div class="w3-left">
           
@@ -324,9 +325,11 @@ l-28 137 -1 -262z"/>
           <div class="w3-clear"></div>
           <h3><span id="holdersCount">loading...</span></h3>
         </div>
+        </div>
       </div>
 
       <div class="w3-fith w3-margin-bottom">
+      <div class="w3-hover-shadow">
         <div class="w3-container w3-card-4 w3-green w3-hover-green w3-round w3-padding-16">
           <div class="w3-left">
             
@@ -380,10 +383,12 @@ c96 420 287 965 487 1391 l55 118 -52 87 c-334 551 -721 1005 -1131 1323 -310
           <div class="w3-clear"></div>
           <h3><span id="circulatingSupplyReadable">loading...</span>&nbsp;/&nbsp;<font size="4" id="initialSupply"></font></h3>
         </div>
+        </div>
       </div>
 
 
       <div class="w3-fith w3-margin-bottom">
+      <div class="w3-hover-shadow">
         <div class="w3-container w3-card-4 w3-green w3-hover-green w3-round w3-padding-16">
           <div class="w3-left">
             
@@ -424,10 +429,12 @@ c96 420 287 965 487 1391 l55 118 -52 87 c-334 551 -721 1005 -1131 1323 -310
           <div class="w3-clear"></div>
           <h3><span id="tokensBurned">loading...</span> &nbsp;<font size="4">SHUF</font>&nbsp;&nbsp;</h3>
         </div>
+        </div>
       </div>
 
 
       <div class="w3-fith w3-margin-bottom">
+      <div class="w3-hover-shadow">
         <div class="w3-container w3-card-4 w3-green w3-hover-green w3-round w3-padding-16">
           <div class="w3-left">
             
@@ -650,9 +657,11 @@ l0 -310 -110 0 -110 0 0 310 0 310 110 0 110 0 0 -310z m-350 -735 l0 -135 95
           <div class="w3-clear"></div>
           <h3><span id="heapTopAmountReadable">loading...</span> &nbsp;<font size="4">SHUF</font>&nbsp;&nbsp;</h3>
         </div>
+        </div>
       </div>
 
       <div class="w3-fith w3-margin-bottom">
+      <div class="w3-hover-shadow">
         <div class="w3-container w3-card-4 w3-green w3-hover-green w3-round w3-padding-16">
           <div class="w3-left">
             
@@ -723,6 +732,7 @@ m-5441 -54 c276 -76 570 -232 832 -443 118 -95 404 -382 497 -499 l61 -77 51
           <div class="w3-clear"></div>
           <h3><span id="heapSize">loading...</span> &nbsp;/&nbsp;512&nbsp;</h3>
         </div>
+        </div>
       </div>
     </div>
 
@@ -731,7 +741,7 @@ m-5441 -54 c276 -76 570 -232 832 -443 118 -95 404 -382 497 -499 l61 -77 51
         
 
       <div class="top-2 w3-third w3-margin-bottom">
-      <div class="w3-card-6 w3-hover-shadow">
+      <div class="w3-hover-shadow w3-card-6">
         <div style="min-height: 330px; height: 100%;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
           <h4>My Heap Spots</h4>
           <div id="mySpots">
@@ -742,7 +752,8 @@ m-5441 -54 c276 -76 570 -232 832 -443 118 -95 404 -382 497 -499 l61 -77 51
       </div>
 
                   <div class="top-1 w3-third w3-margin-bottom">
-        <div style="height: 100%" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+                  <div class="w3-hover-shadow w3-card-6">
+        <div style="min-height: 330px; height: 100%;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
           <h4>Track your Shuffle Monster Tokens</h4>
           <p align="center">
             <font size="2px" Style="font-weight: 50;">paste your wallet addresses below</font>
@@ -759,13 +770,16 @@ m-5441 -54 c276 -76 570 -232 832 -443 118 -95 404 -382 497 -499 l61 -77 51
           </p>
         </div>
         </div>
+        </div>
 
 
      <div class="top-3 w3-third w3-margin-bottom">
-        <div style="height: 330px;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+     <div class="w3-hover-shadow w3-card-6">
+        <div style="min-height: 330px; height: 100%;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
           <h4>My Address Balances</h4>
           <div id="myBalances"></div>
           <div id="addy2"></div>
+        </div>
         </div>
       </div>
     </div>
