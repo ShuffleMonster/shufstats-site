@@ -7,10 +7,10 @@
         <div style="height: 350px;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
           <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
           <div class="w3-right">
-            <h3>52</h3>
+            <h6>SHUF Token Activity</h6>
           </div>
+          <div id="token-txs-11"></div>
           <div class="w3-clear"></div>
-          <h4>Messages</h4>
         </div>
       </div>
 
@@ -57,6 +57,8 @@
 </template>
 
 
+
+
       
 
 <script>
@@ -65,6 +67,11 @@
 
 
 import { readWeb3, getToken } from '../web3.js';
+
+
+
+
+
 
 // function shortAddress(addr) {
 //     return `${addr.slice(0, 21)}...${addr.slice(-5)}`;
@@ -228,8 +235,10 @@ data: function() {
 
 
 
-
 </script>
+
+
+
 
 
 
@@ -289,6 +298,32 @@ data: function() {
         margin-right: 16px;
     }
 }
+
+
+    #token-txs-11 {
+        line-height: 1.8;
+        border-radius: 8px;
+        max-width: 700px !important;
+        background-blend-mode: darken;
+        background-color: transparent;
+    }
+    #token-txs-11 .txs.big-screen-table td .tx-amount{
+        display: inline-block;
+        width: 150px;
+        white-space: nowrap;
+    }
+    #token-txs-11 .txs.big-screen-table td .tx-link{
+        max-width: 120px;
+    }
+    #token-txs-11 .txs.big-screen-table td .tx-link:last-child{
+        max-width: 150px;
+    }
+    #token-txs-11 .txs.big-screen-table td .tx-amount a:nth-child(1){
+        max-width: 110px !important;
+    }
+    #token-txs-11 .txs.big-screen-table td .tx-amount  a:nth-child(2){
+        max-width: 50px !important;
+    }
 
 
 </style>
