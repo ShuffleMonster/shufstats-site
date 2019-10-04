@@ -728,9 +728,10 @@ m-5441 -54 c276 -76 570 -232 832 -443 118 -95 404 -382 497 -499 l61 -77 51
 
 
         <div class="w3-row-padding">
+        
 
       <div class="top-2 w3-third w3-margin-bottom">
-        <div style="height: 100%;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+        <div style="height: 330px;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
           <h4>My Heap Spots</h4>
           <div id="mySpots">
             <div id="addy"></div>
@@ -740,7 +741,7 @@ m-5441 -54 c276 -76 570 -232 832 -443 118 -95 404 -382 497 -499 l61 -77 51
 
 
                   <div class="top-1 w3-third w3-margin-bottom">
-        <div style="height: 330px;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+        <div style="height: 100%" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
           <h4>Track your Shuffle Monster Tokens</h4>
           <p align="center">
             <font size="2px" Style="font-weight: 50;">paste your wallet addresses below</font>
