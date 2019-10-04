@@ -8,7 +8,7 @@
 
 
 
-    <div class="w3-row-padding h3-hoverable">
+    <div class="top-2 w3-row-padding h3-hoverable">
 
       <div class="w3-fith w3-margin-bottom">
         <div class="w3-container w3-card-4 w3-green w3-hover-green w3-round w3-padding-16">
@@ -375,7 +375,7 @@ c96 420 287 965 487 1391 l55 118 -52 87 c-334 551 -721 1005 -1131 1323 -310
           
           </div>
           <div class="w3-right">
-            <h6>Circulating Supply</h6>
+            <h6>Supply</h6>
           </div>
           <div class="w3-clear"></div>
           <h3><span id="circulatingSupplyReadable">loading...</span>&nbsp;/&nbsp;<font size="4" id="initialSupply"></font></h3>
