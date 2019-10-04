@@ -9,16 +9,16 @@
  <table class="w3-table-all w3-hoverable w3-green2 w3-card-4">
             <tbody>
               <tr>
-    <th colspan="3"><h4 align="center">SHUF Transactions</h4></th>
+    <th colspan="3"><h4 align="center">Shuffle Winners</h4></th>
   </tr>
                 <tr class="w3-hoverable">
     <th></th>
-    <th>From</th>
-    <th>To</th>
+    <th>Address</th>
+    <th>Amount</th>
   </tr>
   </tbody>
   <tbody class="w3-hoverable">
-                <tr class="w3-hover-green" v-on:click="click_transfer(item)" v-for="item in winners" v-bind:key="item.tx">
+                <tr class="w3-hover-green" v-on:click="click_winner(item)" v-for="item in winners" v-bind:key="item.tx">
                    <td>
                    
                   <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -217,7 +217,7 @@ c-190 81 -625 294 -818 401 -460 254 -930 561 -1320 863 -60 47 -116 90 -122
 
 
       <td>{{ item.address_short }}</td>
-       <td>wins {{ item.amount }} SHUF</td>
+       <td>{{ item.amount }} SHUF</td>
        </tr>
             </tbody>
           </table>
