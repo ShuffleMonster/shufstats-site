@@ -31,17 +31,6 @@
           </table>
         </div>
       </div>
-
-      <div class="top-3 w3-third w3-margin-bottom">
-        <div style="height: 350px;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
-          <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-          <div class="w3-right">
-            <h3>50</h3>
-          </div>
-          <div class="w3-clear"></div>
-          <h4>Users</h4>
-        </div>
-      </div>
     </div>
 
 
