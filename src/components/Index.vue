@@ -4,13 +4,14 @@
 
     <div class="w3-row-padding">
       <div class="top-1 w3-half w3-margin-bottom">
-        <div style="height: 350px;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
+        <div style="height: 100%;" class="w3-container w3-card-4 w3-green w3-round w3-padding-16">
           <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
           <div class="w3-right">
             <h6>SHUF Token Activity</h6>
           </div>
-          <div id="token-txs-11"></div>
+          
           <div class="w3-clear"></div>
+          <div id="token-txs-11"></div>
         </div>
       </div>
 
