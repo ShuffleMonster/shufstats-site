@@ -652,7 +652,7 @@ l0 -310 -110 0 -110 0 0 310 0 310 110 0 110 0 0 -310z m-350 -735 l0 -135 95
           
           </div>
           <div class="w3-right">
-            <h6>Heap Minimum</h6>
+            <h6>Heap Tail</h6>
           </div>
           <div class="w3-clear"></div>
           <h3><span id="heapTopAmountReadable">loading...</span> &nbsp;<font size="4">SHUF</font>&nbsp;&nbsp;</h3>
