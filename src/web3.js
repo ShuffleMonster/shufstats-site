@@ -2,7 +2,7 @@ import Web3 from 'web3';
 import Env from './env.js';
 
 
-const reparterAbi = require('./contracts/Reparter.json');
+const heapAbi = require('./contracts/Heap.json');
 const tokenAbi = require('./contracts/Token.json');
 
 export async function getWeb3(login) {
@@ -23,12 +23,8 @@ export function readWeb3() {
     return new Web3(new Web3.providers.HttpProvider(Env.ethNode));
 }
 
-export function getReparter(web3) {
-    return web3.eth.Contract(reparterAbi, Env.reparter);
-}
-
-export function getReparterOld(web3) {
-    return web3.eth.Contract(reparterAbi, Env.reparterold);
+export function getHeap(web3) {
+    return web3.eth.Contract(heapAbi, Env.heap);
 }
 
 export function getToken(web3) {
