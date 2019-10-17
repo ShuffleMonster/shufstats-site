@@ -140,8 +140,8 @@
 <script>
 
 import { readWeb3, getToken, getHeap } from '../web3.js';
-
-
+import env  from '../env.js';
+import { aggregate } from '@makerdao/multicall';
 
 function shortAddress(from) {
     return `${from.slice(0, 6)}...${from.slice(-4)}`;
@@ -198,6 +198,33 @@ data: function() {
   },
 
     created: async function() {
+      // Demostration
+      // how to load all heap positions at once
+      const heapContract = getHeap(readWeb3());
+      const heapSize = parseInt(await heapContract.methods.topSize().call());
+      const multicallConfig = { multicallAddress: '0xeefba1e63905ef1d7acba5a8513c70307c1ce441', rpcUrl: env.ethNode, };
+
+      // Create watcher
+      const rawResult = await aggregate(
+        [...Array(heapSize).keys()].map((v) => { return {
+          target: heapContract.address,
+          call: ['entry(uint256)(address,uint256)', v],
+          returns: [
+            [`EA_${v}`],
+            [`EB_${v}`]
+          ]
+        }}),
+        multicallConfig
+      );
+
+      const result = [...Array(heapSize).keys()].map((v) => { return {
+        address: rawResult.results[`EA_${v}`],
+        balance: rawResult.results[`EB_${v}`]
+      }});
+
+      console.log(result);
+      // End Demostration
+
     this.transfers = [];
     const reparter = getToken(readWeb3());
         reparter.events.Transfer({
@@ -284,8 +311,6 @@ data: function() {
             }
         }
     );
-
-
   }
   
 }
