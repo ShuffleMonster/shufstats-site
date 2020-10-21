@@ -1,4 +1,4 @@
-# 🃏 https://heapwars.com 🃏 
+# 🃏 https://geoffedup.netlify.app/ 🃏 
 shufstats-v1.2 now uses Vue.
 ----------------------------------------
 
